@@ -20,5 +20,6 @@ function add_alias() {
 }
 
 initialize_repo
+brew bundle --file=~/.cmd/repo/Brewfile
 add_alias
 
