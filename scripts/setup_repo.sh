@@ -1,0 +1,1 @@
+mkdir -p ~/.cmd && cd ~/.cmd && git clone git@github.com:singachea/cmd.git repo
