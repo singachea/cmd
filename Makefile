@@ -35,6 +35,15 @@ os-app-info:
 os-file-lsof:
 	@cat $(_ROOT_DIR)/queries/files/lsof.sql | osqueryi
 
+## Show detail of a port. Argument PORT is required
+os-port-detail:
+ifeq ($(PORT),)
+	@echo "Please supply argument $(_YELLOW)PORT$(_RESET)."
+	@echo "e.g. $(_YELLOW)cmd os-port-detail PORT=12345$(_RESET)"
+else
+	@sed -e "s/\$${port}/$(PORT)/" $(_ROOT_DIR)/queries/ports/port_detail.sql | osqueryi --json | jq 
+endif
+
 ## List process id and name using certain ports
 os-port-ls:
 	@cat $(_ROOT_DIR)/queries/ports/ports.sql | osqueryi
