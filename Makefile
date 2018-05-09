@@ -35,6 +35,14 @@ os-app-info:
 os-file-lsof:
 	@cat $(_ROOT_DIR)/queries/files/lsof.sql | osqueryi
 
+## List process id and name using certain ports
+os-port-ls:
+	@cat $(_ROOT_DIR)/queries/ports/ports.sql | osqueryi
+
+## List process id and name using certain ports with command lines
+os-port-ls-cmdline:
+	@cat $(_ROOT_DIR)/queries/ports/ports_cmdline.sql | osqueryi
+
 ## Update the command to the latest
 update:
 	@cd $(_ROOT_DIR) && git pull origin master
