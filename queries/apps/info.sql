@@ -1,0 +1,1 @@
+SELECT name, bundle_name, bundle_short_version FROM apps;

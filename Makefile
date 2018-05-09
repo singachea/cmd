@@ -27,6 +27,10 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
+## List down all apps info
+os-app-info:
+	@cat $(_ROOT_DIR)/queries/apps/info.sql | osqueryi
+
 ## List process id and name opening most files
 os-file-lsof:
 	@cat $(_ROOT_DIR)/queries/files/lsof.sql | osqueryi
