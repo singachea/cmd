@@ -4,7 +4,7 @@ _COLOR_RED = \033[0;31m
 _COLOR_ORANGE  = \033[0;33m
 _COLOR_NONE    = \033[m
 
-default:
+_intro:
 	@echo "Hello...there!\nYou can update your command by using $(_COLOR_GREEN)cmd update$(_COLOR_NONE)"
 
 os-file-lsof:
