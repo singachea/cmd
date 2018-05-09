@@ -14,7 +14,7 @@ function add_alias() {
         echo "There is no file '~/.zshrc'. You should install zsh first."
     else
         sed -i '' '/alias cmd=.*/d' ~/.zshrc
-        echo "alias cmd=\"make -f ~/.cmd/repo/Makefile\"" >> ~/.zshrc
+        echo "alias cmd=\"make -f $HOME/.cmd/repo/Makefile\"" >> ~/.zshrc
     fi
 }
 
