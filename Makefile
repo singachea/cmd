@@ -27,6 +27,15 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
+## join column for fields
+join-column:
+ifeq ($(COL),)
+	@echo "Please supply argument $(_YELLOW)COL$(_RESET)."
+	@echo "e.g. $(_YELLOW)cmd join-col COL=2$(_RESET)"
+else
+	@awk '{print $$$(COL)}' | paste -sd "," -
+endif
+
 ## List down all apps info
 os-app-info:
 	@cat $(_ROOT_DIR)/queries/apps/info.sql | osqueryi
@@ -37,7 +46,7 @@ os-file-lsof:
 
 ## List process detail for jps
 os-jps:
-	jps | awk '{print $$1}' | paste -sd "," - | xargs -IPIDS sed -e "s/\$${pid}/PIDS/" $(_ROOT_DIR)/queries/processes/process_detail.sql | osqueryi --json | jq  
+	@jps | awk '{print $$1}' | paste -sd "," - | xargs -IPIDS sed -e "s/\$${pid}/PIDS/" $(_ROOT_DIR)/queries/processes/process_detail.sql | osqueryi --json | jq  
 
 ## Show detail of a port. Argument PORT is required
 os-port-detail:
@@ -64,6 +73,10 @@ ifeq ($(PID),)
 else
 	@sed -e "s/\$${pid}/$(PID)/" $(_ROOT_DIR)/queries/processes/process_detail.sql | osqueryi --json | jq 
 endif
+
+## List process detail for given pids
+os-process-detail-pids:
+	@xargs -IPIDS sed -e "s/\$${pid}/PIDS/" $(_ROOT_DIR)/queries/processes/process_detail.sql | osqueryi --json | jq  
 
 ## Update the command to the latest
 update:
